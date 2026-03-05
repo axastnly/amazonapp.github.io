@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, ChevronRight, Home, User, ShoppingCart, Menu } from "lucide-react";
+import { X, ChevronRight } from "lucide-react";
 
 interface AddToBasketSheetProps {
   isOpen: boolean;
@@ -292,30 +292,6 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
           </div>
         </div>
 
-        {/* ── Bottom nav bar ── */}
-        <div className="flex items-center justify-around py-3 px-2 border-t border-gray-100 flex-shrink-0 bg-white">
-          <button className="p-2 text-gray-600">
-            <Home size={24} />
-          </button>
-          <button className="p-2 text-gray-600">
-            <User size={24} />
-          </button>
-          <button className="relative p-2 text-gray-600">
-            <ShoppingCart size={24} />
-            <span className="absolute top-0 right-0 bg-[#ff9900] text-black text-[9px] font-bold rounded-full min-w-[15px] h-[15px] flex items-center justify-center px-[2px]">
-              14
-            </span>
-          </button>
-          <button className="p-2 text-gray-600">
-            <Menu size={24} />
-          </button>
-          {/* Alexa/AI chat icon */}
-          <button className="p-2 relative w-10 h-10 flex items-center justify-center">
-            <div className="w-6 h-6 rounded-full bg-[#FF6900] flex items-end justify-end p-[2px]">
-              <div className="w-[10px] h-[10px] rounded-full bg-[#3366CC]" />
-            </div>
-          </button>
-        </div>
       </div>
     </>
   );
