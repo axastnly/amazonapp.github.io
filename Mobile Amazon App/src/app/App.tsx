@@ -31,20 +31,6 @@ export default function App() {
         <ProductDetails />
         <CustomerReviews />
 
-        <div className="bg-white px-4 py-6 text-center text-sm text-gray-600 border-t-8 border-gray-100">
-          <p className="mb-2">
-            See personalized recommendations
-          </p>
-          <button className="w-full py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-            Sign in
-          </button>
-          <p className="mt-2">
-            New customer?{" "}
-            <button className="text-[#007185]">
-              Start here.
-            </button>
-          </p>
-        </div>
       </div>
       {/* Bottom padding so content clears the nav bar */}
       <div className="h-[60px]" />
