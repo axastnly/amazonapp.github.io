@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { AddToBasketSheet } from "./AddToBasketSheet";
 
 export function ProductActions() {
+  const [sheetOpen, setSheetOpen] = useState(false);
+
   return (
     <div className="bg-white px-4 pt-3 pb-4">
       {/* In stock */}
@@ -13,7 +17,10 @@ export function ProductActions() {
       </div>
 
       {/* Add to basket */}
-      <button className="w-full bg-[#ffd814] hover:bg-[#f7ca00] text-[#0F1111] text-[15px] font-normal rounded-full py-[10px] mb-2 transition-colors">
+      <button
+        className="w-full bg-[#ffd814] hover:bg-[#f7ca00] text-[#0F1111] text-[15px] font-normal rounded-full py-[10px] mb-2 transition-colors"
+        onClick={() => setSheetOpen(true)}
+      >
         Add to basket
       </button>
 
@@ -21,6 +28,11 @@ export function ProductActions() {
       <button className="w-full bg-[#ffa41c] hover:bg-[#ff8f00] text-[#0F1111] text-[15px] font-normal rounded-full py-[10px] transition-colors">
         Buy Now
       </button>
+
+      <AddToBasketSheet
+        isOpen={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+      />
     </div>
   );
 }
