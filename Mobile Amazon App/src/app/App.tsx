@@ -24,10 +24,10 @@ export default function App() {
       <div className="max-w-md mx-auto">
         <ProductTitle />
         <ProductImageCarousel images={productImages} />
-        <ProductInfo />
-        <ProductHighlights />
         <ProductOptions />
+        <ProductInfo />
         <ProductActions />
+        <ProductHighlights />
         <ProductDetails />
         <CustomerReviews />
 

@@ -1,26 +1,26 @@
-import { ArrowLeft, Search, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Search, ScanLine, Mic } from "lucide-react";
 
 export function ProductHeader() {
   return (
-    <div className="sticky top-0 z-50 bg-[#232f3e] px-4 py-3 flex items-center justify-between">
-      <button className="text-white">
-        <ArrowLeft size={24} />
+    <div className="sticky top-0 z-50 bg-[#232f3e] px-3 py-2 flex items-center gap-2">
+      <button className="text-white p-1">
+        <ArrowLeft size={22} />
       </button>
-      <div className="flex-1 mx-3">
-        <div className="bg-white rounded-md px-3 py-2 flex items-center">
-          <Search size={18} className="text-gray-500 mr-2" />
+      <div className="flex-1">
+        <div className="bg-white rounded-md px-3 py-[7px] flex items-center gap-2">
+          <Search size={16} className="text-gray-400 flex-shrink-0" />
           <input
             type="text"
-            placeholder="Search Amazon"
-            className="flex-1 outline-none text-sm"
+            placeholder="Search or ask a question"
+            className="flex-1 outline-none text-sm text-gray-800 placeholder:text-gray-400"
           />
         </div>
       </div>
-      <button className="text-white relative">
-        <ShoppingCart size={24} />
-        <span className="absolute -top-1 -right-1 bg-[#ff9900] text-xs rounded-full w-4 h-4 flex items-center justify-center text-black">
-          2
-        </span>
+      <button className="text-white p-1">
+        <ScanLine size={22} />
+      </button>
+      <button className="text-white p-1">
+        <Mic size={22} />
       </button>
     </div>
   );
