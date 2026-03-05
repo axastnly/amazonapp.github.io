@@ -7,9 +7,9 @@ interface AddToBasketSheetProps {
 }
 
 const REGULARS = [
-  { color: "#1a6496", label: "TRE" },
-  { color: "#c9547d", label: "GAR" },
-  { color: "#2a2a2a", label: "NEU" },
+  { img: "/product-1.jpg" },
+  { img: "/product-2.jpg" },
+  { img: "/product-3.jpg" },
 ];
 
 function StarRow({
@@ -46,13 +46,11 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
   const [visible, setVisible] = useState(false);
   const [slideIn, setSlideIn] = useState(false);
 
-  // Review nudge state
   const [selectedStar, setSelectedStar] = useState(0);
   const [nudgeCollapsed, setNudgeCollapsed] = useState(false);
   const [showTick, setShowTick] = useState(false);
   const [tickFading, setTickFading] = useState(false);
 
-  // Mount / unmount with animation
   useEffect(() => {
     if (isOpen) {
       setNudgeCollapsed(false);
@@ -72,12 +70,15 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
   const handleStarTap = (star: number) => {
     if (nudgeCollapsed) return;
     setSelectedStar(star);
+    // Show tick immediately at full opacity
     setShowTick(true);
     setTickFading(false);
-    // Start fade-out of tick + collapse after brief pause
-    const t1 = setTimeout(() => setTickFading(true), 80);
-    const t2 = setTimeout(() => setNudgeCollapsed(true), 80);
-    const t3 = setTimeout(() => setShowTick(false), 400);
+    // After 900ms, start fading the tick
+    const t1 = setTimeout(() => setTickFading(true), 900);
+    // After 1000ms, start collapsing the nudge
+    const t2 = setTimeout(() => setNudgeCollapsed(true), 1000);
+    // After 1350ms, remove tick from DOM
+    const t3 = setTimeout(() => setShowTick(false), 1350);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -104,14 +105,9 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
         }`}
         style={{ maxHeight: "82vh" }}
       >
-        {/* ── Added to basket header ── */}
+        {/* ── Added to basket header (no image) ── */}
         <div className="flex items-center px-4 py-3 border-b border-gray-100 flex-shrink-0">
-          <img
-            src="/ariel-1.jpg"
-            alt="Ariel"
-            className="w-11 h-11 object-contain flex-shrink-0"
-          />
-          <div className="flex items-center gap-2 flex-1 ml-3">
+          <div className="flex items-center gap-2 flex-1">
             <div className="w-[22px] h-[22px] bg-[#067D62] rounded-full flex items-center justify-center flex-shrink-0">
               <svg
                 width="11"
@@ -143,7 +139,7 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
             style={{
               maxHeight: nudgeCollapsed ? "0px" : "180px",
               opacity: nudgeCollapsed ? 0 : 1,
-              transition: "max-height 200ms ease-out, opacity 200ms ease-out",
+              transition: "max-height 250ms ease-out, opacity 250ms ease-out",
             }}
           >
             <div className="relative px-4 py-3">
@@ -167,13 +163,13 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
               {/* Stars */}
               <StarRow selectedStar={selectedStar} onStarTap={handleStarTap} />
 
-              {/* ✓ overlay — fades as nudge collapses */}
+              {/* ✓ overlay — stays visible for ~900ms then fades */}
               {showTick && (
                 <div
                   className="absolute inset-0 flex items-center justify-center bg-white/90"
                   style={{
                     opacity: tickFading ? 0 : 1,
-                    transition: "opacity 250ms ease-out",
+                    transition: "opacity 350ms ease-out",
                   }}
                 >
                   <div className="flex items-center gap-[6px] text-[#067D62]">
@@ -213,10 +209,13 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
                 {REGULARS.map((item, i) => (
                   <div
                     key={i}
-                    className="flex-1 aspect-square rounded-lg flex items-center justify-center text-white text-[11px] font-bold"
-                    style={{ backgroundColor: item.color }}
+                    className="flex-1 aspect-square rounded-lg overflow-hidden bg-[#f7f7f7]"
                   >
-                    {item.label}
+                    <img
+                      src={item.img}
+                      alt={`Regular item ${i + 1}`}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                 ))}
                 <button className="w-8 h-8 flex items-center justify-center text-gray-400 flex-shrink-0">
@@ -251,14 +250,14 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
                 save 5% on them.
               </p>
             </div>
-            {/* Progress bar — full green */}
+            {/* Progress bar */}
             <div className="w-full h-[6px] bg-[#067D62] rounded-full mb-4" />
 
             {/* Product suggestion */}
             <div className="flex items-center gap-3">
               <div className="w-16 h-16 bg-[#f7f7f7] rounded flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
-                  src="/ariel-2.jpg"
+                  src="/ariel-3.jpg"
                   alt="Comfort"
                   className="w-full h-full object-contain"
                 />

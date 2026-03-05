@@ -5,93 +5,93 @@ export function CustomerReviews() {
   const reviews = [
     {
       id: 1,
-      author: "Michael R.",
-      date: "February 28, 2026",
+      author: "Emma T.",
+      date: "18 February 2026",
       rating: 5,
       verified: true,
-      title: "Best noise cancelling headphones I've ever owned",
+      title: "Does exactly what it says on the bottle",
       content:
-        "The noise cancellation on these is absolutely incredible. I use them on my daily commute and they block out all the subway noise. The sound quality is top-notch and they're very comfortable even after wearing for hours.",
-      helpful: 234,
+        "I've tried a lot of washing liquids over the years and this is genuinely one of the best. Got a red wine stain out of a white shirt on a 30° wash. Brilliant value for 101 washes too.",
+      helpful: 312,
     },
     {
       id: 2,
-      author: "Sarah K.",
-      date: "February 25, 2026",
-      rating: 4,
+      author: "James H.",
+      date: "11 February 2026",
+      rating: 5,
       verified: true,
-      title: "Great sound, pricey but worth it",
+      title: "Great value, clothes come out smelling fresh",
       content:
-        "These headphones are expensive but the quality justifies the price. The battery life is excellent and the quick charge feature is a lifesaver. Only complaint is they can feel a bit tight at first.",
-      helpful: 156,
+        "Bought this for the value and wasn't disappointed. 101 washes from one bottle is unbeatable. Everything comes out clean and smelling great even on shorter cycles.",
+      helpful: 198,
     },
     {
       id: 3,
-      author: "David L.",
-      date: "February 20, 2026",
-      rating: 5,
+      author: "Sophie R.",
+      date: "4 February 2026",
+      rating: 4,
       verified: true,
-      title: "Perfect for working from home",
+      title: "Works well in cold washes",
       content:
-        "I bought these for work calls and they're perfect. The microphone quality is crystal clear and the noise cancellation helps me focus. Highly recommend for anyone working from home.",
-      helpful: 89,
+        "I run most of my washes at 20° to save energy and this liquid performs brilliantly. Only reason for 4 stars is the bottle is a bit awkward to pour from, but the product itself is excellent.",
+      helpful: 74,
     },
   ];
 
-  return (
-    <div className="bg-white border-t-8 border-gray-100 px-4 py-3">
-      <h2 className="font-semibold text-lg mb-3">Customer reviews</h2>
+  const distribution = [
+    { stars: 5, percent: 87 },
+    { stars: 4, percent: 8 },
+    { stars: 3, percent: 2 },
+    { stars: 2, percent: 1 },
+    { stars: 1, percent: 2 },
+  ];
 
-      <div className="flex items-center gap-2 mb-4">
+  return (
+    <div className="bg-white border-t-8 border-gray-100 px-4 py-4">
+      <h2 className="font-bold text-[15px] text-[#0F1111] mb-3">Customer reviews</h2>
+
+      {/* Overall rating */}
+      <div className="flex items-center gap-2 mb-1">
         <div className="flex">
           {[1, 2, 3, 4, 5].map((star) => (
-            <Star
-              key={star}
-              size={18}
-              className="fill-[#ff9900] text-[#ff9900]"
-            />
+            <Star key={star} size={18} className="fill-[#ff9900] text-[#ff9900]" />
           ))}
         </div>
-        <span className="text-sm">4.6 out of 5</span>
+        <span className="text-sm font-medium">4.8 out of 5</span>
       </div>
+      <p className="text-sm text-gray-500 mb-4">795 global ratings</p>
 
-      <p className="text-sm text-gray-600 mb-4">23,847 global ratings</p>
-
-      <div className="space-y-2 mb-6">
-        {[
-          { stars: 5, percent: 73 },
-          { stars: 4, percent: 15 },
-          { stars: 3, percent: 6 },
-          { stars: 2, percent: 3 },
-          { stars: 1, percent: 3 },
-        ].map((item) => (
+      {/* Star distribution */}
+      <div className="space-y-[6px] mb-6">
+        {distribution.map((item) => (
           <div key={item.stars} className="flex items-center gap-3">
-            <button className="text-sm text-[#007185] whitespace-nowrap">
+            <button className="text-sm text-[#007185] whitespace-nowrap w-10 text-right">
               {item.stars} star
             </button>
-            <Progress value={item.percent} className="flex-1 h-5" />
-            <span className="text-sm text-gray-600 w-8">{item.percent}%</span>
+            <Progress value={item.percent} className="flex-1 h-[14px]" />
+            <span className="text-sm text-gray-500 w-8">{item.percent}%</span>
           </div>
         ))}
       </div>
 
+      {/* Individual reviews */}
       <div className="border-t border-gray-200 pt-4">
-        <h3 className="font-semibold mb-4">Top reviews from the United States</h3>
-        <div className="space-y-4">
+        <h3 className="font-semibold text-[14px] mb-4">Top reviews from the United Kingdom</h3>
+        <div className="space-y-5">
           {reviews.map((review) => (
-            <div key={review.id} className="pb-4 border-b border-gray-200 last:border-b-0">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-sm font-semibold">
+            <div key={review.id} className="pb-5 border-b border-gray-100 last:border-b-0">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-[#e8e8e8] rounded-full flex items-center justify-center text-sm font-semibold text-[#0F1111]">
                   {review.author[0]}
                 </div>
                 <span className="text-sm font-semibold">{review.author}</span>
               </div>
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1">
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
-                      size={14}
+                      size={13}
                       className={
                         star <= review.rating
                           ? "fill-[#ff9900] text-[#ff9900]"
@@ -102,24 +102,22 @@ export function CustomerReviews() {
                 </div>
                 <span className="text-sm font-semibold">{review.title}</span>
               </div>
-              <p className="text-xs text-gray-600 mb-2">
-                Reviewed in the United States on {review.date}
+              <p className="text-xs text-gray-500 mb-2">
+                Reviewed in the United Kingdom on {review.date}
               </p>
               {review.verified && (
-                <p className="text-xs text-[#ff9900] mb-2">
-                  ✓ Verified Purchase
-                </p>
+                <p className="text-xs text-[#c7511f] mb-2">Verified Purchase</p>
               )}
-              <p className="text-sm mb-3">{review.content}</p>
-              <button className="flex items-center gap-1 text-sm text-gray-600">
-                <ThumbsUp size={14} />
-                Helpful ({review.helpful})
+              <p className="text-sm text-[#0F1111] leading-snug mb-3">{review.content}</p>
+              <button className="flex items-center gap-1 text-sm text-gray-500">
+                <ThumbsUp size={13} />
+                <span>Helpful ({review.helpful})</span>
               </button>
             </div>
           ))}
         </div>
-        <button className="text-sm text-[#007185] mt-4">
-          See all reviews
+        <button className="text-sm text-[#007185] mt-3 block">
+          See all 795 reviews
         </button>
       </div>
     </div>
