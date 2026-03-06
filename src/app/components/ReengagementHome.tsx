@@ -119,56 +119,45 @@ function ReviewNudge() {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 px-3 py-2.5 flex flex-col gap-2">
-      {/* Image + one-liner copy */}
-      <div className="flex items-center gap-2.5">
+    <div className="bg-white rounded-xl border border-gray-200 px-3 py-2.5">
+      <div className="flex items-start gap-2.5">
         <div className="w-20 h-20 shrink-0 rounded-lg bg-[#f5f5f5] overflow-hidden flex items-center justify-center">
           <img src={asset("/ariel-1.jpg")} alt="Ariel" className="h-full w-full object-contain" />
         </div>
         <div className="flex flex-col gap-0.5 flex-1">
-          <div className="flex items-center gap-1.5">
-            <div className="flex gap-0.5 shrink-0">
+          <p className="text-[13px] text-gray-800 leading-snug">
+            You read reviews before buying this. <span className="text-gray-400">3 people deciding right now.</span>
+          </p>
+          <p className="text-[11px] text-gray-400 mb-1.5">Ordered 1 month ago</p>
+          {confirmed ? (
+            <div className="flex items-center gap-2">
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <Star key={n} size={22}
+                    className={n <= selected ? "text-[#FF9900] fill-[#FF9900]" : "text-gray-300 fill-gray-300"} />
+                ))}
+              </div>
+              <span className="text-[12px] text-gray-600">Thanks!</span>
+              <button className="text-[12px] text-[#007185] font-medium underline underline-offset-2">
+                Write a review
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-0.5">
               {[1, 2, 3, 4, 5].map((n) => (
-                <Star key={n} size={11} className="fill-[#FF9900] text-[#FF9900]" />
+                <button key={n} aria-label={`${n} star`}
+                  onMouseEnter={() => setHovered(n)}
+                  onMouseLeave={() => setHovered(0)}
+                  onClick={() => handleStar(n)}
+                >
+                  <Star size={26}
+                    className={n <= (hovered || selected) ? "text-[#FF9900] fill-[#FF9900]" : "text-gray-300 fill-gray-300"} />
+                </button>
               ))}
             </div>
-            <p className="text-[12px] text-gray-700 leading-snug">
-              You read reviews before buying this. <span className="text-gray-500">3 people are deciding right now.</span>
-            </p>
-          </div>
-          <p className="text-[10px] text-gray-400">Ordered 1 month ago</p>
+          )}
         </div>
       </div>
-
-      {/* Stars → confirmation */}
-      {confirmed ? (
-        <div className="flex items-center gap-2">
-          {/* Locked-in stars */}
-          <div className="flex gap-0.5">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <Star key={n} size={20}
-                className={n <= selected ? "text-[#FF9900] fill-[#FF9900]" : "text-gray-300 fill-gray-300"} />
-            ))}
-          </div>
-          <span className="text-[12px] text-gray-600">Thanks! </span>
-          <button className="text-[12px] text-[#007185] font-medium underline-offset-2 underline">
-            Write a review
-          </button>
-        </div>
-      ) : (
-        <div className="flex items-center gap-0.5">
-          {[1, 2, 3, 4, 5].map((n) => (
-            <button key={n} aria-label={`${n} star`}
-              onMouseEnter={() => setHovered(n)}
-              onMouseLeave={() => setHovered(0)}
-              onClick={() => handleStar(n)}
-            >
-              <Star size={26}
-                className={n <= (hovered || selected) ? "text-[#FF9900] fill-[#FF9900]" : "text-gray-300 fill-gray-300"} />
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
