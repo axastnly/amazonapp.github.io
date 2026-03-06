@@ -1,4 +1,5 @@
 import { Home, User, ShoppingCart, Menu } from "lucide-react";
+import { asset } from "./components/ui/utils";
 import { ProductHeader } from "./components/ProductHeader";
 import { ProductTitle } from "./components/ProductTitle";
 import { ProductImageCarousel } from "./components/ProductImageCarousel";
@@ -11,9 +12,9 @@ import { CustomerReviews } from "./components/CustomerReviews";
 
 export default function App({ onBack }: { onBack?: () => void } = {}) {
   const productImages = [
-    "/ariel-1.jpg",
-    "/ariel-2.jpg",
-    "/ariel-3.jpg",
+    asset("/ariel-1.jpg"),
+    asset("/ariel-2.jpg"),
+    asset("/ariel-3.jpg"),
   ];
 
   return (

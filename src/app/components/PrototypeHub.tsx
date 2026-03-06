@@ -1,4 +1,5 @@
 import { RotateCcw, Sparkles } from "lucide-react";
+import { asset } from "./ui/utils";
 
 interface Props {
   onFlow: (flow: "reorder" | "reengagement") => void;
@@ -10,7 +11,7 @@ export function PrototypeHub({ onFlow }: Props) {
 
       {/* Clean white header — logo + subtitle, no orange bg */}
       <div className="bg-white px-6 pt-12 pb-6 border-b border-gray-100">
-        <img src="/amazon-logo.webp" alt="Amazon" className="h-8 w-auto object-contain" />
+        <img src={asset("/amazon-logo.webp")} alt="Amazon" className="h-8 w-auto object-contain" />
         <p className="text-[13px] text-gray-500 mt-2">Prototype — choose a flow to explore</p>
       </div>
 

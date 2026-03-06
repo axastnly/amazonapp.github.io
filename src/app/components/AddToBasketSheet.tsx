@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { asset } from "./ui/utils";
 import { X, ChevronRight } from "lucide-react";
 
 interface AddToBasketSheetProps {
@@ -7,9 +8,9 @@ interface AddToBasketSheetProps {
 }
 
 const REGULARS = [
-  { img: "/p9.png" },
-  { img: "/p2.png" },
-  { img: "/p8.png" },
+  { img: asset("/p9.png") },
+  { img: asset("/p2.png") },
+  { img: asset("/p8.png") },
 ];
 
 function StarRow({
@@ -146,7 +147,7 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
               {/* Product thumb + name */}
               <div className="flex items-center gap-3 mb-[6px]">
                 <img
-                  src="/ariel-1.jpg"
+                  src={asset("/ariel-1.jpg")}
                   alt="Ariel"
                   className="w-9 h-9 object-contain flex-shrink-0"
                 />
@@ -257,7 +258,7 @@ export function AddToBasketSheet({ isOpen, onClose }: AddToBasketSheetProps) {
             <div className="flex items-center gap-3">
               <div className="w-16 h-16 bg-[#f7f7f7] rounded flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
-                  src="/ariel-3.jpg"
+                  src={asset("/ariel-3.jpg")}
                   alt="Comfort"
                   className="w-full h-full object-contain"
                 />
