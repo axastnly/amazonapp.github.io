@@ -12,48 +12,44 @@ import {
   Menu,
   Star,
   ChevronRight,
-  Users,
 } from "lucide-react";
 
 interface Props {
   onBack: () => void;
 }
 
-// ── Hero banner carousel — swipe + tap ────────────────────────────────────
+// ── Hero banner carousel — native scroll-snap for reliable mobile swipe ───
 function HeroBannerCarousel() {
   const [slide, setSlide] = useState(0);
-  const touchStartX = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const slides = [asset("/banner.jpg"), asset("/banner2.jpg")];
-  const prev = () => setSlide((s) => (s === 0 ? slides.length - 1 : s - 1));
-  const next = () => setSlide((s) => (s + 1) % slides.length);
+
+  const goTo = (i: number) => {
+    scrollRef.current?.scrollTo({ left: scrollRef.current.clientWidth * i, behavior: "smooth" });
+    setSlide(i);
+  };
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const i = Math.round(scrollRef.current.scrollLeft / scrollRef.current.clientWidth);
+    setSlide(i);
+  };
 
   return (
-    <div
-      className="relative overflow-hidden"
-      style={{ height: 180 }}
-      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
-      onTouchEnd={(e) => {
-        if (touchStartX.current === null) return;
-        const dx = e.changedTouches[0].clientX - touchStartX.current;
-        if (dx < -40) next();
-        else if (dx > 40) prev();
-        touchStartX.current = null;
-      }}
-    >
+    <div className="relative" style={{ height: 200 }}>
       <div
-        className="flex h-full transition-transform duration-300 ease-in-out"
-        style={{ transform: `translateX(-${slide * 100}%)`, width: `${slides.length * 100}%` }}
+        ref={scrollRef}
+        className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar h-full"
+        onScroll={handleScroll}
       >
         {slides.map((src, i) => (
-          <img key={i} src={src} alt={`Banner ${i + 1}`} className="h-full object-cover"
-            style={{ width: `${100 / slides.length}%` }} />
+          <img key={i} src={src} alt={`Banner ${i + 1}`}
+            className="snap-start shrink-0 w-full h-full object-cover" />
         ))}
       </div>
-      <button aria-label="Previous" onClick={prev} className="absolute left-0 top-0 bottom-0 w-1/3" />
-      <button aria-label="Next"     onClick={next} className="absolute right-0 top-0 bottom-0 w-1/3" />
       <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
         {slides.map((_, i) => (
-          <button key={i} onClick={() => setSlide(i)}
+          <button key={i} onClick={() => goTo(i)}
             className={`w-1.5 h-1.5 rounded-full transition-colors ${i === slide ? "bg-white" : "bg-white/40"}`} />
         ))}
       </div>
@@ -129,11 +125,11 @@ function ReviewNudge() {
         <div className="w-12 h-12 shrink-0 rounded-lg bg-[#f5f5f5] overflow-hidden flex items-center justify-center">
           <img src={asset("/p7.png")} alt="CeraVe" className="h-full w-full object-contain" />
         </div>
-        <div className="flex items-center gap-1.5 flex-1">
-          <Users size={11} className="text-gray-400 shrink-0" />
+        <div className="flex flex-col gap-0.5 flex-1">
           <p className="text-[12px] text-gray-700 leading-snug">
             You read reviews before buying this. <span className="text-gray-500">3 people are deciding right now.</span>
           </p>
+          <p className="text-[10px] text-gray-400">Ordered 1 month ago</p>
         </div>
       </div>
 
@@ -215,8 +211,8 @@ export function ReengagementHome({ onBack }: Props) {
         <div className="mt-4 px-3">
           <p className="text-[12px] text-gray-400 mb-2">For you · Sponsored</p>
           <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-            <SponsoredCard img={asset("/p1.png")}  name="NIVEA Cashmere Shower 250ml"         price="£3.50"  />
-            <SponsoredCard img={asset("/p7.png")}  name="CeraVe Hydrating Cleanser 236ml"     price="£9.50"  />
+            <SponsoredCard img={asset("/p4.png")}  name="Finish Dishwasher Tablets x30"       price="£6.00"  />
+            <SponsoredCard img={asset("/p5.png")}  name="Comfort Pure Fabric Conditioner 1L"  price="£4.25"  />
             <SponsoredCard img={asset("/p12.png")} name="The Inkey List Ceramide Moisturizer" price="£12.00" />
             <SponsoredCard img={asset("/p3.png")}  name="OGX Argan Oil Shampoo 385ml"         price="£8.49"  />
           </div>
@@ -244,10 +240,10 @@ export function ReengagementHome({ onBack }: Props) {
                 <ChevronRight size={14} className="text-gray-400" />
               </div>
               <div className="grid grid-cols-2 gap-1">
-                <DealCard img={asset("/p1.png")}  discount="20% off" tag="Limited time" bg="bg-blue-50" />
-                <DealCard img={asset("/p3.png")}  discount="18% off" tag="Limited time" bg="bg-blue-50" />
-                <DealCard img={asset("/p7.png")}  discount="15% off" tag="Limited time" bg="bg-blue-50" />
-                <DealCard img={asset("/p8.png")}  discount="30% off" tag="Limited time" bg="bg-blue-50" />
+                <DealCard img={asset("/p1.png")}  discount="20% off" tag="Limited time" bg="bg-gray-100" />
+                <DealCard img={asset("/p3.png")}  discount="18% off" tag="Limited time" bg="bg-gray-100" />
+                <DealCard img={asset("/p8.png")}  discount="15% off" tag="Limited time" bg="bg-gray-100" />
+                <DealCard img={asset("/p9.png")}  discount="30% off" tag="Limited time" bg="bg-gray-100" />
               </div>
             </div>
           </div>
