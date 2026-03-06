@@ -7,9 +7,9 @@ interface AddToBasketSheetProps {
 }
 
 const REGULARS = [
-  { img: "/product-1.jpg" },
-  { img: "/product-2.jpg" },
-  { img: "/product-3.jpg" },
+  { img: "/p9.png" },
+  { img: "/p2.png" },
+  { img: "/p8.png" },
 ];
 
 function StarRow({
