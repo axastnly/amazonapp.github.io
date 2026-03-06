@@ -9,7 +9,7 @@ import { ProductActions } from "./components/ProductActions";
 import { ProductDetails } from "./components/ProductDetails";
 import { CustomerReviews } from "./components/CustomerReviews";
 
-export default function App() {
+export default function App({ onBack }: { onBack?: () => void } = {}) {
   const productImages = [
     "/ariel-1.jpg",
     "/ariel-2.jpg",
@@ -52,7 +52,7 @@ export default function App() {
         <button className="p-2 text-gray-600">
           <Menu size={24} />
         </button>
-        <button className="p-2 relative w-10 h-10 flex items-center justify-center">
+        <button onClick={onBack} className="p-2 relative w-10 h-10 flex items-center justify-center">
           <div className="w-6 h-6 rounded-full bg-[#FF6900] flex items-end justify-end p-[2px]">
             <div className="w-[10px] h-[10px] rounded-full bg-[#3366CC]" />
           </div>
