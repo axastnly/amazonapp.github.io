@@ -122,12 +122,10 @@ function ReviewNudge() {
     <div className="bg-white rounded-xl border border-gray-200 px-3 py-2.5">
       <div className="flex items-start gap-2.5">
         <div className="w-20 h-20 shrink-0 rounded-lg bg-[#f5f5f5] overflow-hidden flex items-center justify-center">
-          <img src={asset("/ariel-1.jpg")} alt="Ariel" className="h-full w-full object-contain" />
+          <img src={asset("/ariel-1.png")} alt="Ariel" className="h-full w-full object-contain" />
         </div>
         <div className="flex flex-col gap-0.5 flex-1">
-          <p className="text-[13px] text-gray-800 leading-snug">
-            You read reviews before buying this. <span className="text-gray-400">3 people deciding right now.</span>
-          </p>
+          <p className="text-[13px] text-gray-800 leading-snug">3 people deciding right now.</p>
           <p className="text-[11px] text-gray-400 mb-1.5">Ordered 1 month ago</p>
           {confirmed ? (
             <div className="flex items-center gap-2">
