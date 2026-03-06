@@ -132,7 +132,7 @@ function ReviewNudge() {
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((n) => (
                   <Star key={n} size={13}
-                    className={n <= selected ? "fill-[#ff9900] text-[#ff9900]" : "fill-gray-300 text-gray-300"} />
+                    className={n <= selected ? "fill-[#ff9900] text-[#ff9900]" : "text-[#c0c0c0]"} />
                 ))}
               </div>
               <span className="text-[12px] text-gray-600">Thanks!</span>
@@ -149,7 +149,7 @@ function ReviewNudge() {
                   onClick={() => handleStar(n)}
                 >
                   <Star size={26}
-                    className={n <= (hovered || selected) ? "fill-[#ff9900] text-[#ff9900]" : "fill-gray-300 text-gray-300"} />
+                    className={n <= (hovered || selected) ? "fill-[#ff9900] text-[#ff9900]" : "text-[#c0c0c0]"} />
                 </button>
               ))}
             </div>
