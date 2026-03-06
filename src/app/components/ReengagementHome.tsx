@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { asset } from "./ui/utils";
 import {
   Search,
   Mic,
@@ -22,7 +23,7 @@ interface Props {
 function HeroBannerCarousel() {
   const [slide, setSlide] = useState(0);
   const touchStartX = useRef<number | null>(null);
-  const slides = ["/banner.jpg", "/banner2.jpg"];
+  const slides = [asset("/banner.jpg"), asset("/banner2.jpg")];
   const prev = () => setSlide((s) => (s === 0 ? slides.length - 1 : s - 1));
   const next = () => setSlide((s) => (s + 1) % slides.length);
 
@@ -126,7 +127,7 @@ function ReviewNudge() {
       {/* Image + one-liner copy */}
       <div className="flex items-center gap-2.5">
         <div className="w-12 h-12 shrink-0 rounded-lg bg-[#f5f5f5] overflow-hidden flex items-center justify-center">
-          <img src="/p7.png" alt="CeraVe" className="h-full w-full object-contain" />
+          <img src={asset("/p7.png")} alt="CeraVe" className="h-full w-full object-contain" />
         </div>
         <div className="flex items-center gap-1.5 flex-1">
           <Users size={11} className="text-gray-400 shrink-0" />
@@ -174,10 +175,10 @@ export function ReengagementHome({ onBack }: Props) {
   const categories = ["Everyday Essentials", "Grocery", "Beauty", "Electronics", "Home"];
 
   const orderAgainProducts = [
-    { img: "/p7.png",  name: "CeraVe Hydrating Cleanser 236ml",         price: "£9.50",  lastOrdered: "1 month ago"  },
-    { img: "/p1.png",  name: "NIVEA Cashmere & Cottonseed Shower 250ml", price: "£3.50",  lastOrdered: "3 months ago" },
-    { img: "/p3.png",  name: "OGX Argan Oil Shampoo 385ml",              price: "£8.49",  lastOrdered: "6 weeks ago"  },
-    { img: "/p2.png",  name: "Binit 40 Everyday Refuse Sacks",           price: "£5.99",  lastOrdered: "2 months ago" },
+    { img: asset("/p7.png"),  name: "CeraVe Hydrating Cleanser 236ml",         price: "£9.50",  lastOrdered: "1 month ago"  },
+    { img: asset("/p1.png"),  name: "NIVEA Cashmere & Cottonseed Shower 250ml", price: "£3.50",  lastOrdered: "3 months ago" },
+    { img: asset("/p3.png"),  name: "OGX Argan Oil Shampoo 385ml",              price: "£8.49",  lastOrdered: "6 weeks ago"  },
+    { img: asset("/p2.png"),  name: "Binit 40 Everyday Refuse Sacks",           price: "£5.99",  lastOrdered: "2 months ago" },
   ];
 
   return (
@@ -214,10 +215,10 @@ export function ReengagementHome({ onBack }: Props) {
         <div className="mt-4 px-3">
           <p className="text-[12px] text-gray-400 mb-2">For you · Sponsored</p>
           <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-            <SponsoredCard img="/p1.png"  name="NIVEA Cashmere Shower 250ml"         price="£3.50"  />
-            <SponsoredCard img="/p7.png"  name="CeraVe Hydrating Cleanser 236ml"     price="£9.50"  />
-            <SponsoredCard img="/p12.png" name="The Inkey List Ceramide Moisturizer" price="£12.00" />
-            <SponsoredCard img="/p3.png"  name="OGX Argan Oil Shampoo 385ml"         price="£8.49"  />
+            <SponsoredCard img={asset("/p1.png")}  name="NIVEA Cashmere Shower 250ml"         price="£3.50"  />
+            <SponsoredCard img={asset("/p7.png")}  name="CeraVe Hydrating Cleanser 236ml"     price="£9.50"  />
+            <SponsoredCard img={asset("/p12.png")} name="The Inkey List Ceramide Moisturizer" price="£12.00" />
+            <SponsoredCard img={asset("/p3.png")}  name="OGX Argan Oil Shampoo 385ml"         price="£8.49"  />
           </div>
         </div>
 
@@ -231,10 +232,10 @@ export function ReengagementHome({ onBack }: Props) {
                 <ChevronRight size={14} className="text-gray-400" />
               </div>
               <div className="grid grid-cols-2 gap-1">
-                <DealCard img="/p11.png" discount="24% off" tag="Limited time"  bg="bg-gray-100" />
-                <DealCard img="/p10.png" discount="15% off" tag="Ends in 40:44" bg="bg-gray-100" />
-                <DealCard img="/p4.png"  discount="22% off" tag="Limited time"  bg="bg-gray-100" />
-                <DealCard img="/p5.png"  discount="37% off" tag="Limited time"  bg="bg-gray-100" />
+                <DealCard img={asset("/p11.png")} discount="24% off" tag="Limited time"  bg="bg-gray-100" />
+                <DealCard img={asset("/p10.png")} discount="15% off" tag="Ends in 40:44" bg="bg-gray-100" />
+                <DealCard img={asset("/p4.png")}  discount="22% off" tag="Limited time"  bg="bg-gray-100" />
+                <DealCard img={asset("/p5.png")}  discount="37% off" tag="Limited time"  bg="bg-gray-100" />
               </div>
             </div>
             <div className="shrink-0 w-56 bg-white rounded-xl border border-gray-200 p-3">
@@ -243,10 +244,10 @@ export function ReengagementHome({ onBack }: Props) {
                 <ChevronRight size={14} className="text-gray-400" />
               </div>
               <div className="grid grid-cols-2 gap-1">
-                <DealCard img="/p1.png"  discount="20% off" tag="Limited time" bg="bg-blue-50" />
-                <DealCard img="/p3.png"  discount="18% off" tag="Limited time" bg="bg-blue-50" />
-                <DealCard img="/p7.png"  discount="15% off" tag="Limited time" bg="bg-blue-50" />
-                <DealCard img="/p8.png"  discount="30% off" tag="Limited time" bg="bg-blue-50" />
+                <DealCard img={asset("/p1.png")}  discount="20% off" tag="Limited time" bg="bg-blue-50" />
+                <DealCard img={asset("/p3.png")}  discount="18% off" tag="Limited time" bg="bg-blue-50" />
+                <DealCard img={asset("/p7.png")}  discount="15% off" tag="Limited time" bg="bg-blue-50" />
+                <DealCard img={asset("/p8.png")}  discount="30% off" tag="Limited time" bg="bg-blue-50" />
               </div>
             </div>
           </div>
