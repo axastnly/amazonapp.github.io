@@ -122,13 +122,20 @@ function ReviewNudge() {
     <div className="bg-white rounded-xl border border-gray-200 px-3 py-2.5 flex flex-col gap-2">
       {/* Image + one-liner copy */}
       <div className="flex items-center gap-2.5">
-        <div className="w-12 h-12 shrink-0 rounded-lg bg-[#f5f5f5] overflow-hidden flex items-center justify-center">
-          <img src={asset("/p7.png")} alt="CeraVe" className="h-full w-full object-contain" />
+        <div className="w-20 h-20 shrink-0 rounded-lg bg-[#f5f5f5] overflow-hidden flex items-center justify-center">
+          <img src={asset("/ariel-1.jpg")} alt="Ariel" className="h-full w-full object-contain" />
         </div>
         <div className="flex flex-col gap-0.5 flex-1">
-          <p className="text-[12px] text-gray-700 leading-snug">
-            You read reviews before buying this. <span className="text-gray-500">3 people are deciding right now.</span>
-          </p>
+          <div className="flex items-center gap-1.5">
+            <div className="flex gap-0.5 shrink-0">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <Star key={n} size={11} className="fill-[#FF9900] text-[#FF9900]" />
+              ))}
+            </div>
+            <p className="text-[12px] text-gray-700 leading-snug">
+              You read reviews before buying this. <span className="text-gray-500">3 people are deciding right now.</span>
+            </p>
+          </div>
           <p className="text-[10px] text-gray-400">Ordered 1 month ago</p>
         </div>
       </div>
